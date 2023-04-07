@@ -14,10 +14,11 @@ public class TestStudent {
         int index = 0;
         for (int i = 0; i < studentArr.length; i++) {
             if (studentArr[i].getAverage() > max) {
+                max = studentArr[i].getAverage();
                 index = i;
             }
         }
-        System.out.println("Học sinh có điểm TBC cao nhất là " + studentArr[index].toString()
+        System.out.println("Học sinh có điểm TBC cao nhất là : " + studentArr[index].toString()
                 + "\nCó điểm TBC là :" + studentArr[index].getAverage());
     }
 }

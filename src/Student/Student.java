@@ -18,7 +18,8 @@ public class Student {
         this.physicPoint = physicPoint;
         this.chemPoint = chemPoint;
     }
-    public static Student createStudent(){
+
+    public static Student createStudent() {
         System.out.println("Nhập vào tên của hs :");
         String name = scanner.nextLine();
         System.out.println("Nhập vào tuổi của hs :");
@@ -30,7 +31,7 @@ public class Student {
         System.out.println("Nhập vào điểm hóa :");
         double chemPoint = scanner.nextDouble();
         scanner.nextLine();
-        return new Student(name,age,mathPoint,physicPoint,chemPoint);
+        return new Student(name, age, mathPoint, physicPoint, chemPoint);
     }
 
     public String getName() {
@@ -79,12 +80,10 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
+        return "Họ và tên : '" + name + '\'' +
+                ", Tuổi : " + age +
                 ", mathPoint=" + mathPoint +
                 ", physicPoint=" + physicPoint +
-                ", chemPoint=" + chemPoint +
-                '}';
+                ", chemPoint=" + chemPoint;
     }
 }
