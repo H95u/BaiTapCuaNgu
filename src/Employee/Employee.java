@@ -1,9 +1,12 @@
 package Employee;
 
+import java.util.Scanner;
+
 public class Employee {
     int id;
     String name;
     int age;
+    static Scanner scanner = new Scanner(System.in);
 
     public Employee() {
     }
@@ -36,5 +39,14 @@ public class Employee {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    protected void setYearsOfExp(int yearOfExp) {
+    }
+
+    public static void editFullTime() {
+    }
+
+    protected void setWorkTime(int workTime) {
     }
 }

@@ -1,8 +1,9 @@
 package Employee;
 
+import java.util.Scanner;
+
 public class PartTime extends Employee {
     public int workTime;
-    public double salary;
 
     public PartTime() {
     }
@@ -28,10 +29,31 @@ public class PartTime extends Employee {
     public String toString() {
         return "PartTime{" +
                 "workTime=" + workTime +
-                ", salary=" + salary +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+    static PartTime addNewPartTime(){
+        System.out.println("Mời nhập vào tuổi : ");
+        int age = Integer.parseInt(scanner.nextLine());
+        System.out.println("Mời nhập vào tên nhân viên");
+        String name = scanner.nextLine();
+        System.out.println("Mời nhập vào id của nhân viên ");
+        int id = Integer.parseInt(scanner.nextLine());
+        System.out.println("Mời nhập vào số giờ làm của nhân viên ");
+        int workTime = Integer.parseInt(scanner.nextLine());
+        return new PartTime(id,name,age,workTime);
+    }
+    static void editPartTime(Employee employee){
+        System.out.println("Mời nhập vào tên mới ");
+        String name = scanner.nextLine();
+        System.out.println("Mời nhập vào tuổi mới ");
+        int age = Integer.parseInt(scanner.nextLine());
+        System.out.println("Nhập vào số giờ làm ");
+        int workTime = Integer.parseInt(scanner.nextLine());
+        employee.setName(name);
+        employee.setAge(age);
+        employee.setWorkTime(workTime);
     }
 }
