@@ -1,17 +1,15 @@
 package Product;
 
-import java.util.Scanner;
-
 public class Product {
     private int id;
-    private static int idtemp = 1;
+    private static int idTemp = 1;
     private String name;
     private double price;
     private String type;
     static String typeOfMoney = "USD";
 
     public Product() {
-        this.id = idtemp++;
+        this.id = idTemp++;
     }
 
     public int getId() {
@@ -23,7 +21,7 @@ public class Product {
     }
 
     public Product(String name, double price, String type) {
-        this.id = idtemp++;
+        this.id = idTemp++;
         this.name = name;
         this.price = price;
         this.type = type;
