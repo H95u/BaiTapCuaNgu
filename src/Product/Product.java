@@ -4,19 +4,14 @@ import java.util.Scanner;
 
 public class Product {
     private int id;
+    private static int idtemp = 1;
     private String name;
     private double price;
     private String type;
     static String typeOfMoney = "USD";
 
     public Product() {
-    }
-
-    public Product(int id, String name, double price, String type) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.type = type;
+        this.id = idtemp++;
     }
 
     public int getId() {
@@ -26,6 +21,14 @@ public class Product {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Product(String name, double price, String type) {
+        this.id = idtemp++;
+        this.name = name;
+        this.price = price;
+        this.type = type;
+    }
+
 
     public String getName() {
         return name;
@@ -67,32 +70,5 @@ public class Product {
                 ", price=" + price +
                 ", type='" + type + '\'' +
                 '}';
-    }
-    public static Product createNewProduct(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Mời nhập vào id :");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Mời nhập vào tên sản phẩm : ");
-        String name = scanner.nextLine();
-        System.out.println("Mời nhập vào giá của sản phẩm : ");
-        double price = scanner.nextDouble();
-        scanner.nextLine();
-        System.out.println("Nhập vào loại sản phẩm : ");
-        String type = scanner.nextLine();
-        return new Product(id,name,price,type);
-    }
-    public static void editProduct(Product product){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Mời nhập vào tên mới ");
-        String name = scanner.nextLine();
-        System.out.println("Mời nhập vào giá mới ");
-        double price = scanner.nextDouble();
-        scanner.nextLine();
-        System.out.println("Mời nhập vào loại sản phẩm mới ");
-        String type = scanner.nextLine();
-        product.setName(name);
-        product.setPrice(price);
-        product.setType(type);
     }
 }

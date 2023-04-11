@@ -3,6 +3,62 @@ package Employee;
 import java.util.Scanner;
 
 public class TestEmployeeMenu {
+    public static Employee addNewEmployee(Scanner scanner) {
+        System.out.println("Mời nhập vào id của nhân viên ");
+        int id = Integer.parseInt(scanner.nextLine());
+        System.out.println("Mời nhập vào tên nhân viên");
+        String name = scanner.nextLine();
+        System.out.println("Mời nhập vào tuổi : ");
+        int age = Integer.parseInt(scanner.nextLine());
+        return new Employee(id, name, age);
+    }
+
+    public static Employee[] addNewFullTime(Scanner scanner, Employee[] employeesArr) {
+        Employee employee = addNewEmployee(scanner);
+        System.out.println("Mời nhập vào số năm kinh nghiệm của nhân viên ");
+        int yearOfExp = Integer.parseInt(scanner.nextLine());
+        Employee newEmployee = new FullTime(employee, yearOfExp);
+        Employee[] newEmployeeArr = new Employee[employeesArr.length + 1];
+        System.arraycopy(employeesArr, 0, newEmployeeArr, 0, employeesArr.length);
+        newEmployeeArr[newEmployeeArr.length - 1] = newEmployee;
+       return newEmployeeArr;
+    }
+
+    public static void editFullTime(Employee employee, Scanner scanner) {
+        System.out.println("Mời nhập vào tên mới ");
+        String name = scanner.nextLine();
+        System.out.println("Mời nhập vào tuổi mới ");
+        int age = Integer.parseInt(scanner.nextLine());
+        System.out.println("Nhập vào số năm kinh nghiệm ");
+        int yearOfExp = Integer.parseInt(scanner.nextLine());
+        employee.setName(name);
+        employee.setAge(age);
+        employee.setYearsOfExp(yearOfExp);
+    }
+
+    public static Employee[] addNewPartTime(Scanner scanner, Employee[] employeesArr) {
+        Employee employee = addNewEmployee(scanner);
+        System.out.println("Mời nhập vào số giờ làm của nhân viên ");
+        int workTime = Integer.parseInt(scanner.nextLine());
+        Employee newEmployee = new PartTime(employee, workTime);
+        Employee[] newEmployeeArr = new Employee[employeesArr.length + 1];
+        System.arraycopy(employeesArr, 0, newEmployeeArr, 0, employeesArr.length);
+        newEmployeeArr[newEmployeeArr.length - 1] = newEmployee;
+        return newEmployeeArr;
+    }
+
+    public static void editPartTime(Employee employee, Scanner scanner) {
+        System.out.println("Mời nhập vào tên mới ");
+        String name = scanner.nextLine();
+        System.out.println("Mời nhập vào tuổi mới ");
+        int age = Integer.parseInt(scanner.nextLine());
+        System.out.println("Nhập vào số giờ làm ");
+        int workTime = Integer.parseInt(scanner.nextLine());
+        employee.setName(name);
+        employee.setAge(age);
+        employee.setWorkTime(workTime);
+    }
+
     public static void showFullTime(Employee[] employees) {
         for (Employee employee : employees) {
             if (employee instanceof FullTime) {
@@ -73,35 +129,23 @@ public class TestEmployeeMenu {
                     showPartTime(employeesArr);
                     break;
                 case 3:
-                    Employee[] newEmployeeArr = new Employee[employeesArr.length + 1];
-                    int indexAdd = 0;
-                    for (int i = 0; i < employeesArr.length; i++) {
-                        newEmployeeArr[indexAdd] = employeesArr[i];
-                        indexAdd++;
-                    }
                     int myChoice;
                     do {
                         System.out.println("1.Thêm nhân viên fulltime");
                         System.out.println("2.Thêm nhân viên parttime");
-                        System.out.println("3.Back");
+                        System.out.println("0.Back");
                         myChoice = Integer.parseInt(scanner.nextLine());
                         switch (myChoice) {
                             case 1:
-                                newEmployeeArr[newEmployeeArr.length - 1] = FullTime.addNewFullTime();
-                                for (Employee employee : newEmployeeArr) {
-                                    System.out.println(employee);
-                                }
-                                myChoice = 3;
+                                employeesArr = addNewFullTime(scanner,employeesArr);
+                                showAllEmployee(employeesArr);
                                 break;
                             case 2:
-                                newEmployeeArr[newEmployeeArr.length - 1] = PartTime.addNewPartTime();
-                                for (Employee employee : newEmployeeArr) {
-                                    System.out.println(employee);
-                                }
-                                myChoice = 3;
+                              employeesArr = addNewPartTime(scanner, employeesArr);
+                                showAllEmployee(employeesArr);
                                 break;
                         }
-                    } while (myChoice != 3);
+                    } while (myChoice != 0);
                     break;
                 case 4:
                     System.out.println("Mời nhập vào id employee bạn muốn xóa");
@@ -120,9 +164,9 @@ public class TestEmployeeMenu {
                     for (int i = 0; i < employeesArr.length; i++) {
                         if (employeesArr[i].getId() == editID) {
                             if (employeesArr[i] instanceof FullTime) {
-                                FullTime.editFullTime(employeesArr[i]);
+                                editFullTime(employeesArr[i], scanner);
                             } else {
-                                PartTime.editPartTime(employeesArr[i]);
+                                editPartTime(employeesArr[i], scanner);
                             }
                         }
                     }
