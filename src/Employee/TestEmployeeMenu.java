@@ -1,5 +1,6 @@
 package Employee;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TestEmployeeMenu {
@@ -21,7 +22,7 @@ public class TestEmployeeMenu {
         Employee[] newEmployeeArr = new Employee[employeesArr.length + 1];
         System.arraycopy(employeesArr, 0, newEmployeeArr, 0, employeesArr.length);
         newEmployeeArr[newEmployeeArr.length - 1] = newEmployee;
-       return newEmployeeArr;
+        return newEmployeeArr;
     }
 
     public static void editFullTime(Employee employee, Scanner scanner) {
@@ -118,6 +119,7 @@ public class TestEmployeeMenu {
             System.out.println("3.Thêm nhân viên mới ");
             System.out.println("4.Xóa nhân viên ");
             System.out.println("5.Sửa nhân viên ");
+            System.out.println("6.Sắp xếp nhân viên ");
             System.out.println("0.Thoát");
             System.out.println(" Mời nhập vào lựa chọn của bạn : ");
             choice = Integer.parseInt(scanner.nextLine());
@@ -137,11 +139,11 @@ public class TestEmployeeMenu {
                         myChoice = Integer.parseInt(scanner.nextLine());
                         switch (myChoice) {
                             case 1:
-                                employeesArr = addNewFullTime(scanner,employeesArr);
+                                employeesArr = addNewFullTime(scanner, employeesArr);
                                 showAllEmployee(employeesArr);
                                 break;
                             case 2:
-                              employeesArr = addNewPartTime(scanner, employeesArr);
+                                employeesArr = addNewPartTime(scanner, employeesArr);
                                 showAllEmployee(employeesArr);
                                 break;
                         }
@@ -171,6 +173,12 @@ public class TestEmployeeMenu {
                         }
                     }
                     showAllEmployee(employeesArr);
+                    break;
+                case 6:
+                    Arrays.sort(employeesArr);
+                    for (Employee employee : employeesArr) {
+                        System.out.println(employee);
+                    }
                     break;
             }
         } while (choice != 0);

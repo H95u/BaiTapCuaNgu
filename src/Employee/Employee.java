@@ -1,6 +1,6 @@
 package Employee;
 
-public class Employee {
+public class Employee implements Comparable<Employee> {
     int id;
     String name;
     int age;
@@ -42,5 +42,16 @@ public class Employee {
     }
 
     public void setYearsOfExp(int yearOfExp) {
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        if (getAge() > o.getAge()) {
+            return 1;
+        } else if (getAge() < o.getAge()) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }
